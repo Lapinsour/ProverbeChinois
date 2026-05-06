@@ -1,80 +1,57 @@
 import streamlit as st
-import requests
+from openai import OpenAI
 
 # --- CONFIG ---
-API_URL = "https://api-inference.huggingface.co/models/google/flan-t5-base"
-HEADERS = {
-    "Authorization": f"Bearer {st.secrets['HF_TOKEN']}"
-}
+client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
 
-# --- UI ---
-st.set_page_config(page_title="PetitDragonGPT", page_icon="💬")
+st.set_page_config(page_title="PetitDragonGPT", page_icon="🐉")
 
 st.title("PetitDragonGPT")
 
-
-# --- INPUT ---
 mot = st.text_input("A quoi penses-tu, faible crevette ?", placeholder="ex: courage")
 
-
-
-# --- PROMPT BUILDER ---
 def build_prompt(mot):
     return f"""
-Rôle: Tu es un générateur de proverbes chinois.
+Tu es un générateur de proverbes chinois anciens.
 
 Contraintes:
 - 1 seule phrase
 - maximum 20 mots
 - français
-- pas d’explication
+- style sage ancien
 
-Ecris comme si tu étais un vieux sage chinois riche en proverbes traditionnels.
-Ecris un proverbe sur le thème: {mot}
+Thème: {mot}
 
-Message:
+Proverbe:
 """
 
-# --- API CALL ---
 def query_llm(prompt):
     try:
-        response = requests.post(
-            API_URL,
-            headers=HEADERS,
-            json={
-                "inputs": prompt,
-                "parameters": {
-                    "max_new_tokens": 60,
-                    "temperature": 0.7
-                }
-            },
-            timeout=10
+        response = client.chat.completions.create(
+            model="gpt-4o-mini",
+            messages=[
+                {"role": "system", "content": "Tu es un vieux sage chinois qui parle en proverbes."},
+                {"role": "user", "content": prompt}
+            ],
+            temperature=0.8,
+            max_tokens=60
         )
-        response.raise_for_status()
-        data = response.json()
+        return response.choices[0].message.content
 
-        if isinstance(data, list):
-            return data[0]["generated_text"]
-
+    except Exception as e:
+        st.error(f"Erreur API : {e}")
         return None
 
-    except requests.exceptions.RequestException:
-        return None
-
-# --- ACTION ---
-if st.button("Obtenir la sagesse du Dragon vénérable...", use_container_width=True):
+if st.button("Obtenir la sagesse du Dragon...", use_container_width=True):
 
     if not mot:
-        st.warning("Veuillez saisir un thème, petit scarabée.")
+        st.warning("Donne un thème, petit scarabée.")
     else:
         prompt = build_prompt(mot)
 
-        with st.spinner("J'interroge le dragon vénérable..."):
+        with st.spinner("Invocation du dragon..."):
             result = query_llm(prompt)
 
         if result:
-            st.success("✨ Résultat")
-            st.write(result.strip())
-        else:
-            st.error("Erreur lors de la génération (quota ou API).")
-
+            st.success("✨ Sagesse reçue")
+            st.write(result)
