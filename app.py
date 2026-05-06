@@ -83,9 +83,6 @@ if st.button("Obtenir la sagesse du Dragon...", use_container_width=True):
             play_audio()
 
         # bouton traduction
-    if st.button("🌏 Traduire en mandarin"):
-        st.session_state.traduit = translate_to_mandarin(st.session_state.proverbe)
+      if st.button("🌏 Traduire en mandarin"):
+          st.session_state.traduit = translate_to_mandarin(st.session_state.proverbe)
 
-# --- affichage traduction
-if st.session_state.traduit:
-    st.info(f"🀄 {st.session_state.traduit}")
