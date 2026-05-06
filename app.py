@@ -14,7 +14,7 @@ st.title("PetitDragonGPT")
 
 
 # --- INPUT ---
-mot = st.text_input("Entre un mot", placeholder="ex: courage")
+mot = st.text_input("A quoi penses-tu, faible crevette ?", placeholder="ex: courage")
 
 
 
@@ -62,12 +62,12 @@ def query_llm(prompt):
         return None
 
 # --- ACTION ---
-if st.button("Générer", use_container_width=True):
+if st.button("Obtenir la sagesse du Dragon vénérable...", use_container_width=True):
 
     if not mot:
         st.warning("Veuillez saisir un thème, petit scarabée.")
     else:
-        prompt = build_prompt(mot, tone)
+        prompt = build_prompt(mot)
 
         with st.spinner("J'interroge le dragon vénérable..."):
             result = query_llm(prompt)
