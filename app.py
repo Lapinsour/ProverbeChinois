@@ -9,7 +9,7 @@ st.set_page_config(page_title="PetitDragonGPT", page_icon="🐉")
 
 st.title("PetitDragonGPT")
 
-mot = st.text_input("A quoi penses-tu, faible crevette ?", placeholder="ex: courage"
+mot = st.text_input("A quoi penses-tu, faible crevette ?", placeholder="ex: courage")
                     
 translator = Translator()
 
