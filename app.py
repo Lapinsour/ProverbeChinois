@@ -2,7 +2,7 @@ import streamlit as st
 import requests
 
 # --- CONFIG ---
-API_URL = "https://api-inference.huggingface.co/models/google/flan-t5-large"
+API_URL = "https://api-inference.huggingface.co/models/google/flan-t5-base"
 HEADERS = {
     "Authorization": f"Bearer {st.secrets['HF_TOKEN']}"
 }
@@ -78,6 +78,3 @@ if st.button("Obtenir la sagesse du Dragon vénérable...", use_container_width=
         else:
             st.error("Erreur lors de la génération (quota ou API).")
 
-# --- FOOTER ---
-st.divider()
-st.caption("⚡ Déployé avec Streamlit Cloud")
