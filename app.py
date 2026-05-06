@@ -19,7 +19,7 @@ mot = st.text_input("A quoi penses-tu, faible crevette ?", placeholder="ex: cour
 
 
 # --- PROMPT BUILDER ---
-def build_prompt(mot, tone):
+def build_prompt(mot):
     return f"""
 Rôle: Tu es un générateur de proverbes chinois.
 
