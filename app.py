@@ -61,6 +61,6 @@ if st.button("Obtenir la sagesse du Dragon...", use_container_width=True):
 
         if result:
             st.success("✨ Sagesse reçue")
-            st.header(result)
+            st.header(result,text_alignment="center")
             st.write("Clique ici pour t'imprégner du gong de la sagesse...")
             play_audio()
