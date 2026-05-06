@@ -60,7 +60,19 @@ if st.button("Obtenir la sagesse du Dragon...", use_container_width=True):
             result = query_llm(prompt)
 
         if result:
-            st.success("✨ Sagesse reçue")
-            st.success(✨result✨,text_alignment="center")
+            st.markdown(
+                f"""
+                <div style="
+                    background-color: #d4edda;
+                    padding: 12px;
+                    border-radius: 8px;
+                    text-align: center;
+                    font-weight: bold;
+                ">
+                    🐉 {result} 🐉
+                </div>
+                """,
+                unsafe_allow_html=True
+            )
             st.write("Clique ici pour t'imprégner du gong de la sagesse...")
             play_audio()
