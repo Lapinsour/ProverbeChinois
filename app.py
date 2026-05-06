@@ -1,5 +1,5 @@
 import streamlit as st
-import streamlit.components.v1 as components
+
 from openai import OpenAI
 
 # --- CONFIG ---
@@ -43,6 +43,10 @@ def query_llm(prompt):
         st.error(f"Erreur API : {e}")
         return None
 
+def play_audio():
+    audio_file = open("assets/sound.mp3", "rb")
+    st.audio(audio_file.read(), format="audio/mp3")
+
 if st.button("Obtenir la sagesse du Dragon...", use_container_width=True):
     
     
@@ -51,7 +55,7 @@ if st.button("Obtenir la sagesse du Dragon...", use_container_width=True):
         st.warning("Donne un thème, petit scarabée.")
     else:
         prompt = build_prompt(mot)
-        st.audio(open("dragon.mp3", "rb").read())
+        play_audio()
         with st.spinner("Invocation du dragon..."):
             result = query_llm(prompt)
 
