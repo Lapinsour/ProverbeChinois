@@ -74,5 +74,5 @@ if st.button("Obtenir la sagesse du Dragon...", use_container_width=True):
                 """,
                 unsafe_allow_html=True
             )
-            st.write("Clique ici pour t'imprégner du gong de la sagesse...")
+            st.markdown("*Clique ici pour t'imprégner du gong de la sagesse...*")
             play_audio()
