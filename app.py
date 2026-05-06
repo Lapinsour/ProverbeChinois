@@ -1,5 +1,5 @@
 import streamlit as st
-from googletrans import Translator
+from deep_translator import GoogleTranslator
 from openai import OpenAI
 
 # --- CONFIG ---
@@ -11,7 +11,7 @@ st.title("PetitDragonGPT")
 
 mot = st.text_input("A quoi penses-tu, faible crevette ?", placeholder="ex: courage")
                     
-translator = Translator()
+
 
 def build_prompt(mot):
     return f"""
@@ -49,9 +49,8 @@ def play_audio():
     audio_file = open("assets/sound.mp3", "rb")
     st.audio(audio_file.read(), format="audio/mp3")
 
-def translate_to_chinese(text):
-    result = translator.translate(text, dest="zh-cn")
-    return result.text
+def translate_to_mandarin(text):
+    return GoogleTranslator(source="auto", target="zh-CN").translate(text)
 
 if st.button("Obtenir la sagesse du Dragon...", use_container_width=True):
     
@@ -83,8 +82,10 @@ if st.button("Obtenir la sagesse du Dragon...", use_container_width=True):
             st.markdown("*Clique ici pour t'imprégner du gong de la sagesse...*",text_alignment = "center")
             play_audio()
 
-        if st.button("🌏 Traduire en mandarin"):
-                st.session_state.traduit = translate_to_chinese(st.session_state.proverbe)
-        
-        if st.session_state.traduit:
-                st.info(f"🀄 {st.session_state.traduit}")
+        # bouton traduction
+    if st.button("🌏 Traduire en mandarin"):
+        st.session_state.traduit = translate_to_mandarin(st.session_state.proverbe)
+
+# --- affichage traduction
+if st.session_state.traduit:
+    st.info(f"🀄 {st.session_state.traduit}")
