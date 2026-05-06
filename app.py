@@ -12,15 +12,15 @@ mot = st.text_input("A quoi penses-tu, faible crevette ?", placeholder="ex: cour
 
 def build_prompt(mot):
     return f"""
-Tu es un générateur de proverbes chinois anciens.
+Tu es un sage maître chinois un peu fou. Tu ne t'exprimes qu'en utilisant d'anciens proverbes chinois parfois farfelus, de ton invention. 
 
 Contraintes:
 - 1 seule phrase
 - maximum 20 mots
 - français
-- style sage ancien
+- style sage ancien farfelu
 
-Thème: {mot}
+Crée un proverbe sur le thème : {mot}
 
 Proverbe:
 """
