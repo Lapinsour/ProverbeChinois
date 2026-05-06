@@ -43,12 +43,15 @@ def query_llm(prompt):
         return None
 
 if st.button("Obtenir la sagesse du Dragon...", use_container_width=True):
+    
+    
 
     if not mot:
         st.warning("Donne un thème, petit scarabée.")
     else:
         prompt = build_prompt(mot)
-
+        with open("assets/sound.mp3", "rb") as f:
+           st.audio(f.read(), format="audio/mp3")
         with st.spinner("Invocation du dragon..."):
             result = query_llm(prompt)
 
