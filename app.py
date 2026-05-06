@@ -55,10 +55,12 @@ if st.button("Obtenir la sagesse du Dragon...", use_container_width=True):
         st.warning("Donne un thème, petit scarabée.")
     else:
         prompt = build_prompt(mot)
-        play_audio()
+        
         with st.spinner("Invocation du dragon..."):
             result = query_llm(prompt)
 
         if result:
             st.success("✨ Sagesse reçue")
             st.write(result)
+            st.write("Clique ici pour t'imprégner du gong de la sagesse...")
+            play_audio()
