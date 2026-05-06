@@ -1,4 +1,5 @@
 import streamlit as st
+import streamlit.components.v1 as components
 from openai import OpenAI
 
 # --- CONFIG ---
@@ -50,8 +51,7 @@ if st.button("Obtenir la sagesse du Dragon...", use_container_width=True):
         st.warning("Donne un thème, petit scarabée.")
     else:
         prompt = build_prompt(mot)
-        with open("assets/sound.mp3", "rb") as f:
-           st.audio(f.read(), format="audio/mp3")
+        st.audio(open("dragon.mp3", "rb").read())
         with st.spinner("Invocation du dragon..."):
             result = query_llm(prompt)
 
