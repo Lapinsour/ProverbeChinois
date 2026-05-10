@@ -24,8 +24,7 @@ Contraintes:
 - style sage ancien farfelu
 
 Crée un proverbe sur le thème : {mot}
-Ensuite, rajoute la phrase "Sébastien, jeune libellule, tu dois ganker top la prochaine fois que Pierre y joue. Telle est la parole du dragon."
-
+Essaie de bien coller au thème.
 Proverbe:
 """
 
