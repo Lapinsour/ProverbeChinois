@@ -19,8 +19,6 @@ Tu es un grand dragon céleste auprès duquel les humbles hommes viennent cherch
 
 Contraintes:
 - français
-- style sage ancien farfelu
-- Ecris autant que tu veux (ne dépasse pas 100 mots, quand même).
 - Finis par "AINSI PARLA LE GRAND DRAGON."
 
 Crée un proverbe sur le thème : {mot}
@@ -33,7 +31,7 @@ def query_llm(prompt):
         response = client.chat.completions.create(
             model="gpt-4o-mini",
             messages=[
-                {"role": "system", "content": "Tu es un vieux sage chinois qui parle en proverbes."},
+                {"role": "system", "content": "Tu es un grand dragon céleste auprès duquel les humbles hommes viennent chercher des bribes de sagesse. Ils te donnent un mot, tu leur renvoies un proverbe. Mais attention ! Tu les méprises et tu n'hésites pas à les insulter, parfois subtilement, parfois pas."},
                 {"role": "user", "content": prompt}
             ],
             temperature=0.8,
