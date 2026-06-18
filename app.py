@@ -7,9 +7,9 @@ client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
 
 st.set_page_config(page_title="GrandDragonGPT", page_icon="🐉")
 
-st.title("PetitDragonGPT")
+st.title("GrandDragonGPT")
 
-mot = st.text_input("A quoi penses-tu, faible crevette ?", placeholder="ex: courage")
+mot = st.text_input("A quoi penses-tu, misérable raclure de crevette ?", placeholder="ex: courage")
                     
 
 
