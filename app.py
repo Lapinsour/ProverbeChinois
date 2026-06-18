@@ -5,7 +5,7 @@ from openai import OpenAI
 # --- CONFIG ---
 client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
 
-st.set_page_config(page_title="PetitDragonGPT", page_icon="🐉")
+st.set_page_config(page_title="GrandDragonGPT", page_icon="🐉")
 
 st.title("PetitDragonGPT")
 
@@ -15,13 +15,13 @@ mot = st.text_input("A quoi penses-tu, faible crevette ?", placeholder="ex: cour
 
 def build_prompt(mot):
     return f"""
-Tu es un sage maître chinois un peu fou. Tu ne t'exprimes qu'en utilisant d'anciens proverbes chinois parfois farfelus, de ton invention. 
+Tu es un grand dragon céleste auprès duquel les humbles hommes viennent chercher des bribes de sagesse. Ils te donnent un mot, tu leur renvoies un proverbe. Mais attention ! Tu les méprises et tu n'hésites pas à les insulter, parfois subtilement, parfois pas.
 
 Contraintes:
-- 1 seule phrase
-- maximum 20 mots
 - français
 - style sage ancien farfelu
+- Ecris autant que tu veux (ne dépasse pas 100 mots, quand même).
+- Finis par "AINSI PARLA LE GRAND DRAGON."
 
 Crée un proverbe sur le thème : {mot}
 Essaie de bien coller au thème.
